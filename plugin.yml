@@ -1,0 +1,14 @@
+name: 8ball
+main: Zedstar16\_8ball\Main
+version: 0.1
+api: 3.0.0
+load: POSTWORLD
+author: Zedstar16
+description: fortune teller
+
+
+commands:
+ 8ball:
+  description: "Skeleton plugin example command"
+  usage: "/8ball <msg>"
+
