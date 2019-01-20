@@ -9,6 +9,6 @@ description: fortune teller
 
 commands:
  8ball:
-  description: "Skeleton plugin example command"
+  description: "Enter something for the 8ball to predict!"
   usage: "/8ball <msg>"
 
