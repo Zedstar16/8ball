@@ -5,6 +5,10 @@ You can use 8ball either by doing /8ball (what u want predicted)
 OR
 by typing a chat message containing the bot prefix
 
+[![](https://poggit.pmmp.io/shield.state/8ball)](https://poggit.pmmp.io/p/8ball)
+<a href="https://poggit.pmmp.io/p/8ball"><img src="https://poggit.pmmp.io/shield.state/8ball"></a>
+[![HitCount](http://hits.dwyl.io/Zedstar16/8ball.svg)](http://hits.dwyl.io/Zedstar16/8ball)
+
 # Changes:
 
 - Cooldown for bot making predictions
