@@ -59,7 +59,7 @@ class Main extends PluginBase implements Listener {
                 $this->getScheduler()->scheduleDelayedTask(new PredictionTask($this), 2);
             }else{
                 $event->setCancelled(true);
-                $event->getPlayer()->sendMessage(C::RED . "Don't try and predict anything too quickly! Wait ".C::WHITE . ($this->cooldown[$pn] + 10 - time()) . " seconds ".C::RED."before trying to make another prediction ;)");
+                $event->getPlayer()->sendMessage(C::RED . "Don't try and predict anything too quickly! Wait ".C::WHITE . ($this->cooldown[$pn] + $ct - time()) . " seconds ".C::RED."before trying to make another prediction ;)");
             }
         }
     }
