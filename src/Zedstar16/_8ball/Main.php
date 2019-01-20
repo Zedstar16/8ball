@@ -38,7 +38,7 @@ class Main extends PluginBase {
                         "Outlook not so good" => "s",
                         "Very doubtful" => "t"
                     );
-                    $this->getServer()->broadcastMessage("§6➤ §8[§l§6Bot§r§8] §cHorizon§8>§e " . array_rand($choices, 1) );
+                    $this->getServer()->broadcastMessage("§6➤ §8[§l§6Bot§r§8] §c8ball§8>§e " . array_rand($choices, 1) );
 
                   
                 } else $sender->sendMessage("I need something to predict!");
