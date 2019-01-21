@@ -1,4 +1,4 @@
-bot-prefix: "8ball, "
+bot-prefix: "8ball "
 bot-message: "§6➤ §8[§l§6Bot§r§8] §c8ball§8>§e {prediction}"
 prediction-cooldown: 10
 
