@@ -5,10 +5,3 @@ api: 3.0.0
 load: POSTWORLD
 author: Zedstar16
 description: fortune teller
-
-
-commands:
- 8ball:
-  description: "Enter something for the 8ball to predict!"
-  usage: "/8ball <msg>"
-
