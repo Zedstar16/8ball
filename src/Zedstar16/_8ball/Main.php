@@ -8,8 +8,6 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
-use pocketmine\command\CommandSender;
-use pocketmine\command\Command;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat as C;
 use Zedstar16\_8ball\tasks\PredictionTask;
@@ -48,10 +46,16 @@ class Main extends PluginBase implements Listener {
     }
 
 
+    /**
+     * @param PlayerChatEvent $event
+     * @event Priority HIGH
+     * @ignoreCancelled False
+     */
     public function onChat(PlayerChatEvent $event){
-        $pn = $event->getPlayer()->getName();
-
-        if(strpos($event->getMessage(), $this->getConfig()->get("bot-prefix")) !== false){
+        $prefix = $this->getConfig()->get("bot-prefix");
+        $prefixlength = strlen($prefix);
+        if(substr($event->getMessage(), 0, $prefixlength) == $prefix) {
+            $pn = $event->getPlayer()->getName();
             $ct = floatval($this->getConfig()->get("prediction-cooldown"));
             if((!isset($this->cooldown[$pn])) || (($this->cooldown[$pn] + $ct - time() <= 0))){
                 $this->cooldown[$pn] = time();
@@ -59,20 +63,9 @@ class Main extends PluginBase implements Listener {
                 $this->getScheduler()->scheduleDelayedTask(new PredictionTask($this), 2);
             }else{
                 $event->setCancelled(true);
-                $event->getPlayer()->sendMessage(C::RED . "Don't try and predict anything too quickly! Wait ".C::WHITE . ($this->cooldown[$pn] + $ct - time()) . " seconds ".C::RED."before trying to make another prediction ;)");
+                $event->getPlayer()->sendMessage(C::RED . "Don't try and predict anything too quickly! Wait ".C::WHITE . ($this->cooldown[$pn] + 10 - time()) . " seconds ".C::RED."before trying to make another prediction ;)");
             }
         }
-    }
-
-
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
-		switch($command->getName()){
-			case "8ball":
-                if(isset($args[0])) {
-                    $this->getServer()->getPlayer($sender->getName())->chat($this->getConfig()->get("bot-prefix") . " " . implode(" ", $args));
-                } else $sender->sendMessage("I need something to predict!");
-            }
-        return true;
     }
 
 }
