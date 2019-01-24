@@ -16,6 +16,8 @@ class Main extends PluginBase implements Listener {
     /**@var array*/
     public $cooldown = [];
     /**@var array*/
+    public $sendresponseto = [];
+    /**@var array*/
     public $choices = array(
         "It is certain" => "a",
         "It is decidedly so" => "b",
@@ -49,7 +51,7 @@ class Main extends PluginBase implements Listener {
     /**
      * @param PlayerChatEvent $event
      * @event Priority HIGH
-     * @ignoreCancelled False
+     * @ignoreCancelled True
      */
     public function onChat(PlayerChatEvent $event){
         $prefix = $this->getConfig()->get("bot-prefix");
@@ -61,6 +63,10 @@ class Main extends PluginBase implements Listener {
                 $this->cooldown[$pn] = time();
                 //there is a delayed task because otherwise the prediction will send before the players message
                 $this->getScheduler()->scheduleDelayedTask(new PredictionTask($this), 2);
+                if($this->getConfig()->get("send-message-as") == "message") {
+                    $this->sendresponseto[$pn] = $pn;
+                    $event->setCancelled();
+                }
             }else{
                 $event->setCancelled(true);
                 $event->getPlayer()->sendMessage(C::RED . "Don't try and predict anything too quickly! Wait ".C::WHITE . ($this->cooldown[$pn] + 10 - time()) . " seconds ".C::RED."before trying to make another prediction ;)");
@@ -69,4 +75,3 @@ class Main extends PluginBase implements Listener {
     }
 
 }
-
