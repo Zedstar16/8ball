@@ -25,4 +25,6 @@ You can change the message the bot sends
 
 You can change the cooldown of the rate players can use it at
 
+You can choose for the response to be a message to the player, or broadcast so everyone can see it
+
 8ball, By Zedstar16
