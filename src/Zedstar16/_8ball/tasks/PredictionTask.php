@@ -22,7 +22,16 @@ class PredictionTask extends Task
     {
         $msg = $this->plugin->getConfig()->get("bot-message");
         $msg = str_replace("{prediction}", array_rand($this->plugin->choices, 1), $msg);
-        $this->plugin->getServer()->broadcastMessage($msg);
+        if($this->plugin->getConfig()->get("send-message-as") == "message"){
+            foreach($this->plugin->getServer()->getOnlinePlayers() as $p){
+                if(in_array($p->getName(), $this->plugin->sendresponseto)){
+                   $p->sendMessage($msg);
+                   unset($this->plugin->sendresponseto[$p->getName()]);
+                }
+            }
+        }else {
+            $this->plugin->getServer()->broadcastMessage($msg);
+        }
     }
 
 }
