@@ -1,4 +1,12 @@
+#The word/phrase needed to make a response send
 bot-prefix: "8ball "
+
+#This is what is sent when a player uses the prefix in their message
 bot-message: "§6➤ §8[§l§6Bot§r§8] §c8ball§8>§e {prediction}"
+
+#Should be a number
 prediction-cooldown: 10
 
+#You can choose to send the message as broadcast (to everyone) or just the player who did it, message
+#Put either "message" or "broadcast" here.
+send-message-as: "broadcast"
